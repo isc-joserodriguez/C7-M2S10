@@ -1,30 +1,27 @@
-let id;
+let cadena = 324;
 
-const obtenerId = () => {
-  id = 10;
-};
-const abonar = (id, abono) => {
-  console.log(`Al usuario ${id} se le abonaron $${abono}`);
-};
-
-const promesaEjemplo = new Promise((resolver, reject) => {
+const palindromo = new Promise((resolver, reject) => {
   setTimeout(() => {
-    obtenerId();
-    if (!id) {
-      reject();
+    if (!cadena) {
+      reject("No existe la cadena.");
+    } else if (typeof cadena !== "string") {
+      reject("El elemento no es de tipo String.");
+    } else if (cadena.length < 3) {
+      reject("El tamaño de laa cadena es menor o igual a 2.");
+    } else if (cadena === cadena.split("").reverse().join("")) {
+      resolver("Es Palindromo");
+    } else {
+      resolver("No es Palindromo");
     }
-    resolver("Listo");
-  }, 3000);
+  }, 1000);
 });
 
-promesaEjemplo
-  .then((mensaje) => {
-    console.log(mensaje);
-    abonar(id, 1000);
-  })
-  .catch(() => {
-    console.log("Error");
-  })
-  .finally(() => {
-    console.log("FINALLY...");
-  });
+const funcionResolver = (mensaje) => {
+  console.log(mensaje);
+};
+
+const funcionReject = (mensaje) => {
+  console.log(mensaje);
+};
+
+palindromo.then(funcionResolver).catch(funcionReject);
