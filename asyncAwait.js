@@ -16,13 +16,13 @@ const palindromo = new Promise((resolver, reject) => {
   }, 1000);
 });
 
-const funcionResolver = (mensaje) => {
-  console.log(mensaje);
+const asincrono = async () => {
+  try {
+    const resp = await palindromo;
+    console.log(resp);
+  } catch (e) {
+    console.log("ERROR DE LA PROMESA:", e);
+  }
 };
 
-const funcionReject = (mensaje) => {
-  console.log(mensaje);
-};
-
-palindromo.then(funcionResolver)
-.catch(funcionReject);
+asincrono();
