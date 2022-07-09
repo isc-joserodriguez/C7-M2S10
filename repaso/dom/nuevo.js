@@ -5,11 +5,17 @@ let titulo = "Hola";
 h1Element.textContent = titulo;
 inputElement.value = titulo;
 
+let pausa;
+
 inputElement.addEventListener("keyup", function (event) {
-  let inputValor = event.target.value;
-  if ((inputValor == "")) {
-    h1Element.textContent = "Vacío";
-  } else {
-    h1Element.textContent = inputValor;
-  }
+  clearTimeout(pausa);
+  pausa = setTimeout(() => {
+    console.log('Función ultra pesada que consume muchos recursos')
+    let inputValor = event.target.value;
+    if (inputValor == "") {
+      h1Element.textContent = "Vacío";
+    } else {
+      h1Element.textContent = inputValor;
+    }
+  }, 500);
 });
